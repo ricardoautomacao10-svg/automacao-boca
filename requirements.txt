@@ -1,0 +1,9 @@
+beautifulsoup4
+Flask
+gunicorn
+Pillow
+python-dotenv
+requests
+redis
+lxml_html_clean
+

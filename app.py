@@ -63,7 +63,7 @@ def criar_imagem_post(url_imagem, titulo_post, url_logo):
 
         # --- Definição de cores e fontes ---
         cor_fundo_geral = (0, 0, 0, 255)
-        cor_fundo_texto = #f7f7f7"
+        cor_fundo_texto = "#f7f7f7"
         cor_vermelha = "#d90429"
         # --- FONTES AJUSTADAS CONFORME SOLICITADO ---
         fonte_titulo = ImageFont.truetype("Roboto-Black.ttf", 50)
@@ -256,3 +256,4 @@ def health_check():
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 10000))
     app.run(host='0.0.0.0', port=port)
+

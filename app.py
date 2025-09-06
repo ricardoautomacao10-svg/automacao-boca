@@ -53,11 +53,11 @@ else:
 def criar_imagem_post(url_imagem, titulo_post, url_logo):
     print("🎨 [ETAPA 1/4] Iniciando criação da imagem com o design final...")
     try:
-        print("   - Baixando imagem da notícia...")
+        print("    - Baixando imagem da notícia...")
         response_img = requests.get(url_imagem, stream=True, timeout=15); response_img.raise_for_status()
         imagem_noticia = Image.open(io.BytesIO(response_img.content)).convert("RGBA")
         
-        print("   - Baixando imagem do logo...")
+        print("    - Baixando imagem do logo...")
         response_logo = requests.get(url_logo, stream=True, timeout=15); response_logo.raise_for_status()
         logo = Image.open(io.BytesIO(response_logo.content)).convert("RGBA")
 
@@ -69,7 +69,7 @@ def criar_imagem_post(url_imagem, titulo_post, url_logo):
         fonte_titulo = ImageFont.truetype("Roboto-Black.ttf", 50)
         fonte_arroba = ImageFont.truetype("Anton-Regular.ttf", 30)
 
-        print("   - Montando o layout base...")
+        print("    - Montando o layout base...")
         imagem_final = Image.new('RGBA', (IMG_WIDTH, IMG_HEIGHT), cor_fundo_geral)
         draw = ImageDraw.Draw(imagem_final)
 
@@ -85,7 +85,8 @@ def criar_imagem_post(url_imagem, titulo_post, url_logo):
         draw.rounded_rectangle(box_vermelho_coords, radius=raio_arredondado, fill=cor_vermelha)
         
         # Desenha a caixa branca por cima, um pouco menor
-        box_azul_coords = [(50, 620), (IMG_WIDTH - 50, IMG_HEIGHT - 50)]
+        # ******** A CORREÇÃO ESTÁ AQUI ********
+        box_branco_coords = [(50, 620), (IMG_WIDTH - 50, IMG_HEIGHT - 50)]
         draw.rounded_rectangle(box_branco_coords, radius=raio_arredondado, fill=cor_fundo_texto)
 
         # Coloca o logo centralizado, sobrepondo as duas camadas
@@ -94,7 +95,7 @@ def criar_imagem_post(url_imagem, titulo_post, url_logo):
         pos_logo_y = 620 - (logo.height // 2)
         imagem_final.paste(logo, (pos_logo_x, pos_logo_y), logo)
         
-        print("   - Adicionando textos...")
+        print("    - Adicionando textos...")
         # Ajusta o wrap para a nova fonte
         linhas_texto = textwrap.wrap(titulo_post.upper(), width=32)
         texto_junto = "\n".join(linhas_texto)
@@ -256,4 +257,5 @@ def health_check():
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 10000))
     app.run(host='0.0.0.0', port=port)
+
 

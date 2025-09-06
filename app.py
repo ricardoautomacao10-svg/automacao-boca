@@ -67,7 +67,7 @@ def criar_imagem_post(url_imagem, titulo_post, url_logo):
         cor_vermelha = "#d90429"
         # --- FONTES AJUSTADAS CONFORME SOLICITADO ---
         fonte_titulo = ImageFont.truetype("Roboto-Black.ttf", 50)
-        fonte_arroba = ImageFont.truetype("Anton-Regular.ttf", 30)
+        fonte_arroba = ImageFont.truetype("Anton-Regular.ttf", 40)
 
         print("    - Montando o layout base...")
         imagem_final = Image.new('RGBA', (IMG_WIDTH, IMG_HEIGHT), cor_fundo_geral)
@@ -101,7 +101,7 @@ def criar_imagem_post(url_imagem, titulo_post, url_logo):
         texto_junto = "\n".join(linhas_texto)
         draw.text((IMG_WIDTH / 2, 800), texto_junto, font=fonte_titulo, fill=(0,0,0,255), anchor="mm", align="center")
         
-        draw.text((IMG_WIDTH / 2, 980), "@BOCANOTROMBONELITORAL", font=fonte_arroba, fill=(255,255,0,255), anchor="ms", align="center")
+        draw.text((IMG_WIDTH / 2, 980), "@BOCANOTROMBONELITORAL", font=fonte_arroba, fill=(0,0,0,255), anchor="ms", align="center")
 
         buffer_saida = io.BytesIO()
         imagem_final.convert('RGB').save(buffer_saida, format='JPEG', quality=95)
@@ -257,5 +257,6 @@ def health_check():
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 10000))
     app.run(host='0.0.0.0', port=port)
+
 
 

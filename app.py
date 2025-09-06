@@ -81,12 +81,12 @@ def criar_imagem_post(url_imagem, titulo_post, url_logo):
         # --- EFEITO DE DESIGN AJUSTADO ---
         raio_arredondado = 40
         # Desenha primeiro a camada vermelha por baixo
-        box_vermelho_coords = [(40, 610), (IMG_WIDTH - 40, IMG_HEIGHT - 40)]
+        box_vermelho_coords = [(40, 650), (IMG_WIDTH - 40, IMG_HEIGHT - 40)]
         draw.rounded_rectangle(box_vermelho_coords, radius=raio_arredondado, fill=cor_vermelha)
         
         # Desenha a caixa branca por cima, um pouco menor
         # ******** A CORREÇÃO ESTÁ AQUI ********
-        box_branco_coords = [(50, 600), (IMG_WIDTH - 50, IMG_HEIGHT - 50)]
+        box_branco_coords = [(40, 500), (IMG_WIDTH - 50, IMG_HEIGHT - 50)]
         draw.rounded_rectangle(box_branco_coords, radius=raio_arredondado, fill=cor_fundo_texto)
 
         # Coloca o logo centralizado, sobrepondo as duas camadas
@@ -257,6 +257,7 @@ def health_check():
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 10000))
     app.run(host='0.0.0.0', port=port)
+
 
 
 
